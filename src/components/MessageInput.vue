@@ -1,5 +1,5 @@
 <template>
-  <div class="message-input-wrapper">
+  <div class="message-input-wrapper" @paste="handlePaste">
     <v-menu
       v-model="emojiPickerOpen"
       :close-on-content-click="false"
@@ -217,11 +217,24 @@ export default {
       const before = this.messageToBeSent.slice(0, start);
       const after = this.messageToBeSent.slice(end);
       this.messageToBeSent = `${before}${emoji}${after}`;
-      this.$nextTick(() => {
+
+      this.emojiPickerOpen = false;      this.$nextTick(() => {
         input.focus();
         const pos = start + emoji.length;
         input.setSelectionRange(pos, pos);
       });
+    },
+    handlePaste(event) {
+      const items = Array.from(event.clipboardData && event.clipboardData.items || []);
+      const imageItem = items.find((item) => item.type.startsWith('image/');
+      if (!imageItem) return;
+      event.preventDefault();
+      const file = imageItem.getAsFile();
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.SEND_MESSAGE(e.target.result);
+      };
+      reader.readAsDataURL(file);
     },
   },
 };
