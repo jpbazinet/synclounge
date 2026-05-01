@@ -236,6 +236,8 @@ export default {
 
 .emoji-btn {
   flex-shrink: 0;
+  align-self: center;
+  margin-top: 6px;
 }
 
 .emoji-trigger {
