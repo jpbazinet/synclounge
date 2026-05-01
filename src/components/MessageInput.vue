@@ -159,6 +159,7 @@ function replaceEmoticons(text) {
   let last = 0;
   let m;
   URL_RE.lastIndex = 0;
+  // eslint-disable-next-line no-cond-assign
   while ((m = URL_RE.exec(text)) !== null) {
     if (m.index > last) {
       parts.push(text.slice(last, m.index).replace(EMOTICON_PATTERN, (s) => EMOTICON_MAP[s] || s));
