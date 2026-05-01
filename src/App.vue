@@ -73,7 +73,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            Donate ♥
+            Donate â¥
           </v-btn>
         </DonateDialog>
       </v-toolbar-items>
@@ -224,13 +224,31 @@ export default {
       'discordUrl',
     ]),
 
+    imdbUrl() {
+      const meta = this.GET_ACTIVE_MEDIA_METADATA;
+      if (!meta) return null;
+      // Plex new format: Guid array e.g. [{id: "imdb://tt1234567"}]
+      if (Array.isArray(meta.Guid)) {
+        const entry = meta.Guid.find((g) => g.id && g.id.startsWith('imdb://'));
+        if (entry) {
+          return `https://www.imdb.com/title/${entry.id.replace('imdb://', '')}/`;
+        }
+      }
+      // Plex old format: top-level guid string e.g. "com.plexapp.agents.imdb://tt1234567?..."
+      if (meta.guid) {
+        const match = meta.guid.match(/imdb:\/\/(tt\d+)/);
+        if (match) {
+          return `https://www.imdb.com/title/${match[1]}/`;
+        }
+      }
+      return null;
+    },
+
     links() {
       return [
-        {
-          title: 'Github',
-          href: this.repositoryUrl,
-          target: '_blank',
-        },
+        this.imdbUrl
+          ? { title: 'IMDb', href: this.imdbUrl, target: '_blank' }
+          : { title: 'Github', href: this.repositoryUrl, target: '_blank' },
         {
           title: 'Discord',
           target: '_blank',
