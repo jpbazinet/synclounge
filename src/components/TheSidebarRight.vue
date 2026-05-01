@@ -127,6 +127,7 @@
 </template>
 
 <script>
+import MessageInput from '@/components/MessageInput.vue';
 import {
   mapActions, mapGetters, mapMutations, mapState,
 } from 'vuex';
@@ -138,7 +139,7 @@ export default {
 
   components: {
     MessageList: () => import('@/components/MessageList.vue'),
-    MessageInput: () => import('@/components/MessageInput.vue'),
+    MessageInput,
     UserList: () => import('@/components/UserList.vue'),
   },
 
