@@ -69,6 +69,7 @@ export default {
 }
 
 .message-item :deep(.v-list-item__avatar) {
+  align-self: flex-start;
   margin-top: 2px;
   margin-right: 10px;
 }
