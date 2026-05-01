@@ -61,7 +61,7 @@ export default {
 /* stylelint-disable selector-pseudo-class-no-unknown, selector-class-pattern */
 .message-item {
   align-items: flex-start !important;
-  padding: 0 !important;
+  padding: 4px 8px !important;
 }
 
 .message-item + .message-item {
