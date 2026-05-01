@@ -56,15 +56,20 @@ export default {
 .message-content {
   white-space: normal !important;
   font-weight: normal !important;
+
   /* Allow long URLs to wrap instead of overflowing */
   word-break: break-word;
   overflow-wrap: anywhere;
 }
+
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 .message-content :deep(.chat-link) {
   color: inherit;
   text-decoration: underline;
   word-break: break-all;
 }
+
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 .message-content :deep(.chat-link:hover) {
   opacity: 0.8;
 }
