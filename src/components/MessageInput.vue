@@ -246,6 +246,8 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 0;
 }
 
 .emoji-btn {
