@@ -218,14 +218,15 @@ export default {
       const after = this.messageToBeSent.slice(end);
       this.messageToBeSent = `${before}${emoji}${after}`;
 
-      this.emojiPickerOpen = false;      this.$nextTick(() => {
+      this.emojiPickerOpen = false;
+      this.$nextTick(() => {
         input.focus();
         const pos = start + emoji.length;
         input.setSelectionRange(pos, pos);
       });
     },
     handlePaste(event) {
-      const items = Array.from(event.clipboardData && event.clipboardData.items || []);
+      const items = Array.from((event.clipboardData && event.clipboardData.items) || []);
       const imageItem = items.find((item) => item.type.startsWith('image/'));
       if (!imageItem) return;
       event.preventDefault();
