@@ -294,6 +294,7 @@ export default {
 .emoji-item:hover {
   background: rgb(128 128 128 / 20%);
 }
+
 .send-btn {
   flex-shrink: 0;
   align-self: center;
