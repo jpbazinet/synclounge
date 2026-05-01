@@ -49,15 +49,22 @@
     <v-text-field
       ref="messageInput"
       v-model="messageToBeSent"
-      append-outer-icon="mdi-send"
       label="Message"
       hide-details
       single-line
-      class="ml-1 mr-2 pr-1"
-      @click:append-outer="sendMessage"
+      class="ml-1"
       @keyup.enter.native="sendMessage"
       @keyup.space.native="convertEmoticons"
     />
+    <v-btn
+      icon
+      small
+      class="send-btn mr-1"
+      title="Send"
+      @click="sendMessage"
+    >
+      <v-icon>mdi-send</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -287,9 +294,9 @@ export default {
 .emoji-item:hover {
   background: rgb(128 128 128 / 20%);
 }
-/* stylelint-disable selector-pseudo-class-no-unknown */
-.message-input-wrapper :deep(.v-input__append-outer .v-icon) {
-  color: rgb(255 255 255 / 70%);
+.send-btn {
+  flex-shrink: 0;
+  align-self: center;
+  color: rgb(255 255 255 / 70%) !important;
 }
-/* stylelint-enable selector-pseudo-class-no-unknown */
 </style>
