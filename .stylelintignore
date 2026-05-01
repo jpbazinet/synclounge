@@ -1,0 +1,5 @@
+src/styles/variables.scss
+src/assets/css/style.css
+src/components/TheUpnextDialog.vue
+src/views/PlexLibrary.vue
+src/views/WebPlayer.vue
