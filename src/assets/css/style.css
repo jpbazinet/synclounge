@@ -41,3 +41,26 @@ main {
   width: 90px;
   margin: 0 1px 0 0;
 }
+
+/* Slightly larger base font */
+.v-application {
+  font-size: 15px !important;
+}
+
+.v-list-item__title,
+.v-list-item__subtitle {
+  font-size: 15px !important;
+}
+
+
+/* Slightly larger base font */
+.v-application {
+  font-size: 15px !important;
+}
+
+
+.v-list-item__title,
+.v-list-item__subtitle {
+  font-size: 15px !important;
+}
+
