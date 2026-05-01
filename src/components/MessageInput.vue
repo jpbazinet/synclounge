@@ -17,9 +17,7 @@
           title="Emoji"
           v-on="on"
         >
-          <v-icon small>
-            mdi-emoticon-outline
-          </v-icon>
+          <span class="emoji-trigger">&#x1F642;</span>
         </v-btn>
       </template>
       <v-card class="emoji-picker pa-2">
@@ -148,12 +146,28 @@ const EMOTICONS = [
 
 // Build a regex that matches any emoticon as a whole word/token
 const EMOTICON_PATTERN = new RegExp(
-  `(${EMOTICONS.map(([e]) => e.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+  `(${EMOTICONS.map(([e]) => e.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')).join('|')})`,
   'g',
 );
 const EMOTICON_MAP = Object.fromEntries(EMOTICONS);
+
+// Matches http/https URLs so we never convert emoticons inside them (e.g. :/)
+const URL_RE = /https?:\/\/\S+/g;
+
 function replaceEmoticons(text) {
-  return text.replace(EMOTICON_PATTERN, (match) => EMOTICON_MAP[match] || match);
+  const parts = [];
+  let last = 0;
+  let m;
+  URL_RE.lastIndex = 0;
+  while ((m = URL_RE.exec(text)) !== null) {
+    if (m.index > last) {
+      parts.push(text.slice(last, m.index).replace(EMOTICON_PATTERN, (s) => EMOTICON_MAP[s] || s));
+    }
+    parts.push(m[0]);
+    last = m.index + m[0].length;
+  }
+  parts.push(text.slice(last).replace(EMOTICON_PATTERN, (s) => EMOTICON_MAP[s] || s));
+  return parts.join('');
 }
 
 export default {
@@ -220,6 +234,10 @@ export default {
 }
 .emoji-btn {
   flex-shrink: 0;
+}
+.emoji-trigger {
+  font-size: 18px;
+  line-height: 1;
 }
 .emoji-picker {
   width: 300px;
