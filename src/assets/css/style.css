@@ -3,44 +3,38 @@ h3 {
   color: white;
 }
 
-
 h4 {
   color: #bdbdbd;
 }
-
 
 main {
   background: #2b5876;
   background: linear-gradient(to bottom, #1f1c2c, #182848);
 }
 
-
 .pt-content-progress {
   min-height: 1px;
   background: white;
 }
-
 
 /* Scrollbar */
 ::-webkit-scrollbar {
   /* remove scrollbar space */
   background: transparent;
 
-
   /* optional: just make scrollbar invisible */
   width: 2px;
   height: 2px;
 }
-
 
 ::-webkit-scrollbar-button {
   width: 2px;
   height: 2px;
 }
 
-
 ::-webkit-scrollbar-thumb {
   background: rgb(229 160 13 / 60%);
+}
 
 /* Default-size non-round buttons */
 .v-btn:not(.v-btn--round).v-size--default {
