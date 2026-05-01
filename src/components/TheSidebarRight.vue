@@ -121,7 +121,7 @@
       <v-divider />
 
       <MessageList class="messages" />
-    <MessageInput class="message-input-area" />
+      <MessageInput class="message-input-area" />
     </div>
   </v-navigation-drawer>
 </template>
