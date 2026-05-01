@@ -63,7 +63,7 @@
       title="Send"
       @click="sendMessage"
     >
-      <v-icon>mdi-send</v-icon>
+      <span class="send-trigger">&#x27A4;</span>
     </v-btn>
   </div>
 </template>
@@ -263,7 +263,8 @@ export default {
   margin-top: 15px;
 }
 
-.emoji-trigger {
+.emoji-trigger,
+.send-trigger {
   font-size: 18px;
   line-height: 1;
 }
