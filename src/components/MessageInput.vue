@@ -247,7 +247,7 @@ export default {
   align-items: center;
   width: 100%;
   border-top: 1px solid rgb(255 255 255 / 8%);
-  padding: 6px 0;
+  padding: 0;
 }
 
 .emoji-btn {
