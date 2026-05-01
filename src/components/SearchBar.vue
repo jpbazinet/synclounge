@@ -10,7 +10,7 @@
     hide-details
     hide-no-data
     solo
-    :menu-props="{ maxHeight: '80vh', maxWidth: '500px' }"
+    :menu-props="{ maxHeight: '80vh', maxWidth: '320px' }"
   >
     <template
       v-if="query"
