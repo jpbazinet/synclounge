@@ -44,7 +44,8 @@ export default {
     processedText() {
       if (this.message.text.startsWith('data:image/')) {
         const src = this.message.text;
-        return '<img src="' + src + '" style="max-width:100%;max-height:300px;border-radius:4px;display:block;" />';
+        const imgStyle = 'max-width:100%;max-height:300px;border-radius:4px;display:block;';
+        return `<img src="${src}" style="${imgStyle}" />`;
       }
       const safe = escapeHtml(this.message.text);
       return safe.replace(URL_PATTERN, (url) => {
