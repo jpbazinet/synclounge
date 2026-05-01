@@ -1,6 +1,6 @@
 <template>
-  <v-list-item>
-    <v-list-item-avatar size="32">
+  <v-list-item class="message-item">
+    <v-list-item-avatar size="40">
       <v-img :src="sender.thumb" />
     </v-list-item-avatar>
     <v-list-item-content>
@@ -58,23 +58,40 @@ export default {
 </script>
 
 <style scoped>
+.message-item {
+  align-items: flex-start !important;
+  padding: 10px 12px !important;
+}
+.message-item + .message-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.message-item :deep(.v-list-item__avatar) {
+  margin-top: 2px;
+  margin-right: 10px;
+}
+.message-item :deep(.v-avatar) {
+  box-shadow: 0 0 0 2px rgba(229, 160, 13, 0.5) !important;
+}
+.message-item :deep(.v-list-item__title) {
+  color: #f0a020 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.01em !important;
+  margin-bottom: 3px !important;
+}
 .message-content {
   white-space: normal !important;
   font-weight: normal !important;
-
-  /* Allow long URLs to wrap instead of overflowing */
   word-break: break-word;
   overflow-wrap: anywhere;
+  color: rgba(255, 255, 255, 0.85) !important;
+  line-height: 1.5 !important;
 }
-
-/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 .message-content :deep(.chat-link) {
   color: inherit;
   text-decoration: underline;
   word-break: break-all;
 }
-
-/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 .message-content :deep(.chat-link:hover) {
   opacity: 0.8;
 }
