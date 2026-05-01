@@ -53,9 +53,10 @@
         </v-btn>
 
         <v-btn
-          small
           class="hidden-sm-and-down"
-          text
+          :color="imdbUrl ? 'primary' : undefined"
+          :raised="!!imdbUrl"
+          :text="!imdbUrl"
           :href="imdbUrl || undefined"
           :disabled="!imdbUrl"
           target="_blank"
