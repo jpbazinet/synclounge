@@ -246,7 +246,7 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgb(255 255 255 / 8%);
   padding: 6px 0;
 }
 
