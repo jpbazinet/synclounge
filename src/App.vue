@@ -53,29 +53,15 @@
         </v-btn>
 
         <v-btn
-          v-for="item in links"
-          :key="item.title"
           small
-          tag="a"
           class="hidden-sm-and-down"
           text
-          :href="item.href"
-          :target="item.target"
+          :href="imdbUrl || undefined"
+          :disabled="!imdbUrl"
+          target="_blank"
         >
-          {{ item.title }}
+          IMDb
         </v-btn>
-
-        <DonateDialog v-slot="{ on, attrs }">
-          <v-btn
-            small
-            class="hidden-sm-and-down"
-            text
-            v-bind="attrs"
-            v-on="on"
-          >
-            Donate â¥
-          </v-btn>
-        </DonateDialog>
       </v-toolbar-items>
 
       <router-view name="rightSidebarButton" />
@@ -172,7 +158,6 @@ export default {
     TheSidebarLeft: () => import('@/components/TheSidebarLeft.vue'),
     TheUpnextDialog: () => import('@/components/TheUpnextDialog.vue'),
     TheNowPlayingChip: () => import('@/components/TheNowPlayingChip.vue'),
-    DonateDialog: () => import('@/components/DonateDialog.vue'),
     TheAppBarCrumbs: () => import('@/components/TheAppBarCrumbs.vue'),
   },
 
@@ -221,7 +206,6 @@ export default {
 
     ...mapState([
       'repositoryUrl',
-      'discordUrl',
     ]),
 
     imdbUrl() {
@@ -242,19 +226,6 @@ export default {
         }
       }
       return null;
-    },
-
-    links() {
-      return [
-        this.imdbUrl
-          ? { title: 'IMDb', href: this.imdbUrl, target: '_blank' }
-          : { title: 'Github', href: this.repositoryUrl, target: '_blank' },
-        {
-          title: 'Discord',
-          target: '_blank',
-          href: this.discordUrl,
-        },
-      ];
     },
 
     showNowPlaying() {
