@@ -9,9 +9,10 @@
     <v-list-item-content>
       <v-list-item-title v-text="sender.username" />
 
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <v-list-item-subtitle
         class="message-content"
-        v-text="message.text"
+        v-html="processedText"
       />
     </v-list-item-content>
   </v-list-item>
@@ -19,6 +20,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
+
+// Matches http/https URLs
+const URL_PATTERN = /(https?:\/\/[^\s<>"']+)/g;
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
 export default {
   name: 'MessageItem',
@@ -38,6 +51,11 @@ export default {
     sender() {
       return this.GET_MESSAGES_USER_CACHE_USER(this.message.senderId);
     },
+
+    processedText() {
+      const safe = escapeHtml(this.message.text);
+      return safe.replace(URL_PATTERN, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link">${url}</a>`);
+    },
   },
 };
 </script>
@@ -46,5 +64,18 @@ export default {
 .message-content {
   white-space: normal !important;
   font-weight: normal !important;
+  /* Allow long URLs to wrap instead of overflowing */
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.message-content :deep(.chat-link) {
+  color: inherit;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.message-content :deep(.chat-link:hover) {
+  opacity: 0.8;
 }
 </style>
