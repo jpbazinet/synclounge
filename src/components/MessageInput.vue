@@ -28,7 +28,7 @@
             v-model="emojiSearch"
             dense
             hide-details
-            placeholder="Search emoji…"
+            placeholder="Search emojiâ¦"
             prepend-inner-icon="mdi-magnify"
             outlined
             @click.stop
@@ -58,6 +58,7 @@
       class="ml-1 mr-2 pr-1"
       @click:append-outer="sendMessage"
       @keyup.enter.native="sendMessage"
+      @keyup.space.native="convertEmoticons"
     />
   </div>
 </template>
@@ -66,55 +67,96 @@
 import { mapActions } from 'vuex';
 
 const EMOJIS = [
-  { emoji: '😀', name: 'grinning' },
-  { emoji: '😂', name: 'joy' },
-  { emoji: '🤣', name: 'rofl' },
-  { emoji: '😍', name: 'heart eyes' },
-  { emoji: '🥰', name: 'smiling face with hearts' },
-  { emoji: '😎', name: 'cool' },
-  { emoji: '🤔', name: 'thinking' },
-  { emoji: '😭', name: 'crying' },
-  { emoji: '😱', name: 'scream' },
-  { emoji: '🤯', name: 'exploding head' },
-  { emoji: '😤', name: 'triumph' },
-  { emoji: '🥳', name: 'partying' },
-  { emoji: '😴', name: 'sleeping' },
-  { emoji: '🤮', name: 'vomiting' },
-  { emoji: '😬', name: 'grimacing' },
-  { emoji: '🙄', name: 'eye roll' },
-  { emoji: '😏', name: 'smirk' },
-  { emoji: '🤡', name: 'clown' },
-  { emoji: '👍', name: 'thumbs up' },
-  { emoji: '👎', name: 'thumbs down' },
-  { emoji: '👏', name: 'clap' },
-  { emoji: '🙌', name: 'raised hands' },
-  { emoji: '🤝', name: 'handshake' },
-  { emoji: '✌️', name: 'peace' },
-  { emoji: '🤞', name: 'fingers crossed' },
-  { emoji: '💪', name: 'muscle' },
-  { emoji: '🫶', name: 'heart hands' },
-  { emoji: '❤️', name: 'heart' },
-  { emoji: '🔥', name: 'fire' },
-  { emoji: '💀', name: 'skull' },
-  { emoji: '💩', name: 'poop' },
-  { emoji: '👀', name: 'eyes' },
-  { emoji: '🎉', name: 'party' },
-  { emoji: '🍿', name: 'popcorn' },
-  { emoji: '🎬', name: 'clapper' },
-  { emoji: '📽️', name: 'film projector' },
-  { emoji: '🍕', name: 'pizza' },
-  { emoji: '🍺', name: 'beer' },
-  { emoji: '☕', name: 'coffee' },
-  { emoji: '🤦', name: 'facepalm' },
-  { emoji: '🤷', name: 'shrug' },
-  { emoji: '💯', name: '100' },
-  { emoji: '✨', name: 'sparkles' },
-  { emoji: '😆', name: 'laughing' },
-  { emoji: '😅', name: 'sweat smile' },
-  { emoji: '🫠', name: 'melting' },
-  { emoji: '🥱', name: 'yawning' },
-  { emoji: '😐', name: 'neutral' },
+  { emoji: 'ð', name: 'grinning' },
+  { emoji: 'ð', name: 'joy' },
+  { emoji: 'ð¤£', name: 'rofl' },
+  { emoji: 'ð', name: 'heart eyes' },
+  { emoji: 'ð¥°', name: 'smiling face with hearts' },
+  { emoji: 'ð', name: 'cool' },
+  { emoji: 'ð¤', name: 'thinking' },
+  { emoji: 'ð­', name: 'crying' },
+  { emoji: 'ð±', name: 'scream' },
+  { emoji: 'ð¤¯', name: 'exploding head' },
+  { emoji: 'ð¤', name: 'triumph' },
+  { emoji: 'ð¥³', name: 'partying' },
+  { emoji: 'ð´', name: 'sleeping' },
+  { emoji: 'ð¤®', name: 'vomiting' },
+  { emoji: 'ð¬', name: 'grimacing' },
+  { emoji: 'ð', name: 'eye roll' },
+  { emoji: 'ð', name: 'smirk' },
+  { emoji: 'ð¤¡', name: 'clown' },
+  { emoji: 'ð', name: 'thumbs up' },
+  { emoji: 'ð', name: 'thumbs down' },
+  { emoji: 'ð', name: 'clap' },
+  { emoji: 'ð', name: 'raised hands' },
+  { emoji: 'ð¤', name: 'handshake' },
+  { emoji: 'âï¸', name: 'peace' },
+  { emoji: 'ð¤', name: 'fingers crossed' },
+  { emoji: 'ðª', name: 'muscle' },
+  { emoji: 'ð«¶', name: 'heart hands' },
+  { emoji: 'â¤ï¸', name: 'heart' },
+  { emoji: 'ð¥', name: 'fire' },
+  { emoji: 'ð', name: 'skull' },
+  { emoji: 'ð©', name: 'poop' },
+  { emoji: 'ð', name: 'eyes' },
+  { emoji: 'ð', name: 'party' },
+  { emoji: 'ð¿', name: 'popcorn' },
+  { emoji: 'ð¬', name: 'clapper' },
+  { emoji: 'ð½ï¸', name: 'film projector' },
+  { emoji: 'ð', name: 'pizza' },
+  { emoji: 'ðº', name: 'beer' },
+  { emoji: 'â', name: 'coffee' },
+  { emoji: 'ð¤¦', name: 'facepalm' },
+  { emoji: 'ð¤·', name: 'shrug' },
+  { emoji: 'ð¯', name: '100' },
+  { emoji: 'â¨', name: 'sparkles' },
+  { emoji: 'ð', name: 'laughing' },
+  { emoji: 'ð', name: 'sweat smile' },
+  { emoji: 'ð« ', name: 'melting' },
+  { emoji: 'ð¥±', name: 'yawning' },
+  { emoji: 'ð', name: 'neutral' },
 ];
+
+// Ordered longest-first so e.g. :'( matches before :(
+const EMOTICONS = [
+  [":'(", 'ð¢'],
+  [">:(", 'ð '],
+  ['</3', 'ð'],
+  [':D',  'ð'],
+  [':P',  'ð'],
+  [':p',  'ð'],
+  [';)',  'ð'],
+  [':)',  'ð'],
+  [':]',  'ð'],
+  [':(',  'ð'],
+  [':[',  'ð'],
+  [':|',  'ð'],
+  [':/',  'ð'],
+  [':o',  'ð®'],
+  [':O',  'ð®'],
+  [':*',  'ð'],
+  ['B)',  'ð'],
+  ['<3',  'â¤ï¸'],
+  ['XD',  'ð'],
+  ['xD',  'ð'],
+  ['^_^', 'ð'],
+  ['^^',  'ð'],
+  ['-_-', 'ð'],
+  ['o_o', 'ð³'],
+  ['O_O', 'ð³'],
+];
+
+// Build a regex that matches any emoticon as a whole word/token
+const EMOTICON_PATTERN = new RegExp(
+  '(' + EMOTICONS.map(([e]) => e.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')',
+  'g',
+);
+
+const EMOTICON_MAP = Object.fromEntries(EMOTICONS);
+
+function replaceEmoticons(text) {
+  return text.replace(EMOTICON_PATTERN, (match) => EMOTICON_MAP[match] || match);
+}
 
 export default {
   name: 'MessageInput',
@@ -139,9 +181,22 @@ export default {
     ]),
 
     sendMessage() {
-      if (this.messageToBeSent.trim() === '') return;
-      this.SEND_MESSAGE(this.messageToBeSent);
+      const text = replaceEmoticons(this.messageToBeSent).trim();
+      if (text === '') return;
+      this.SEND_MESSAGE(text);
       this.messageToBeSent = '';
+    },
+
+    convertEmoticons() {
+      const converted = replaceEmoticons(this.messageToBeSent);
+      if (converted !== this.messageToBeSent) {
+        const input = this.$refs.messageInput.$el.querySelector('input');
+        const pos = input?.selectionStart ?? converted.length;
+        this.messageToBeSent = converted;
+        this.$nextTick(() => {
+          input?.setSelectionRange(pos, pos);
+        });
+      }
     },
 
     insertEmoji(emoji) {
