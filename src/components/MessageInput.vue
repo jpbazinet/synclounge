@@ -146,7 +146,7 @@ const EMOTICONS = [
 
 // Build a regex that matches any emoticon as a whole word/token
 const EMOTICON_PATTERN = new RegExp(
-  `(${EMOTICONS.map(([e]) => e.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&')).join('|')})`,
+  `(${EMOTICONS.map(([e]) => e.replace(/[-[\]{}()*+?.,\\^$|]/g, '\\$&')).join('|')})`,
   'g',
 );
 const EMOTICON_MAP = Object.fromEntries(EMOTICONS);
