@@ -233,16 +233,20 @@ export default {
   align-items: center;
   width: 100%;
 }
+
 .emoji-btn {
   flex-shrink: 0;
 }
+
 .emoji-trigger {
   font-size: 18px;
   line-height: 1;
 }
+
 .emoji-picker {
   width: 300px;
 }
+
 .emoji-grid {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -250,6 +254,7 @@ export default {
   max-height: 200px;
   overflow-y: auto;
 }
+
 .emoji-item {
   font-size: 20px;
   padding: 4px;
@@ -260,7 +265,8 @@ export default {
   line-height: 1;
   transition: background 0.15s;
 }
+
 .emoji-item:hover {
-  background: rgba(128, 128, 128, 0.2);
+  background: rgb(128 128 128 / 20%);
 }
 </style>
