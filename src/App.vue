@@ -3,7 +3,6 @@
     <TheSidebarLeft />
     <router-view name="rightSidebar" />
 
-
     <v-app-bar
       app
       scroll-off-screen
@@ -11,7 +10,6 @@
       style="z-index: 5;"
     >
       <v-app-bar-nav-icon @click="SET_LEFT_SIDEBAR_OPEN" />
-
 
       <router-link
         :to="{ name: 'RoomCreation' }"
@@ -29,12 +27,10 @@
         </picture>
       </router-link>
 
-
       <TheNowPlayingChip
         v-if="showNowPlaying"
         class="pl-4"
       />
-
 
       <v-spacer />
 
