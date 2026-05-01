@@ -287,4 +287,9 @@ export default {
 .emoji-item:hover {
   background: rgb(128 128 128 / 20%);
 }
+/* stylelint-disable selector-pseudo-class-no-unknown */
+.message-input-wrapper :deep(.v-input__append-outer .v-icon) {
+  color: rgb(255 255 255 / 70%);
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
 </style>
