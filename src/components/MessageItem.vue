@@ -42,6 +42,10 @@ export default {
       return this.GET_MESSAGES_USER_CACHE_USER(this.message.senderId);
     },
     processedText() {
+      if (this.message.text.startsWith('data:image/')) {
+        const src = this.message.text;
+        return '<img src="' + src + '" style="max-width:100%;max-height:300px;border-radius:4px;display:block;" />';
+      }
       const safe = escapeHtml(this.message.text);
       return safe.replace(URL_PATTERN, (url) => {
         const attrs = `href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link"`;
