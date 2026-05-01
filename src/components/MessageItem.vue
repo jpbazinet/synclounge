@@ -1,19 +1,12 @@
 <template>
   <v-list-item>
     <v-list-item-avatar size="32">
-      <v-img
-        :src="sender.thumb"
-      />
+      <v-img :src="sender.thumb" />
     </v-list-item-avatar>
-
     <v-list-item-content>
       <v-list-item-title v-text="sender.username" />
-
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <v-list-item-subtitle
-        class="message-content"
-        v-html="processedText"
-      />
+      <v-list-item-subtitle class="message-content" v-html="processedText" />
     </v-list-item-content>
   </v-list-item>
 </template>
@@ -35,26 +28,25 @@ function escapeHtml(text) {
 
 export default {
   name: 'MessageItem',
-
   props: {
     message: {
       type: Object,
       required: true,
     },
   },
-
   computed: {
     ...mapGetters('synclounge', [
       'GET_MESSAGES_USER_CACHE_USER',
     ]),
-
     sender() {
       return this.GET_MESSAGES_USER_CACHE_USER(this.message.senderId);
     },
-
     processedText() {
       const safe = escapeHtml(this.message.text);
-      return safe.replace(URL_PATTERN, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link">${url}</a>`);
+      return safe.replace(URL_PATTERN, (url) => {
+        const attrs = `href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link"`;
+        return `<a ${attrs}>${url}</a>`;
+      });
     },
   },
 };
@@ -68,13 +60,11 @@ export default {
   word-break: break-word;
   overflow-wrap: anywhere;
 }
-
 .message-content :deep(.chat-link) {
   color: inherit;
   text-decoration: underline;
   word-break: break-all;
 }
-
 .message-content :deep(.chat-link:hover) {
   opacity: 0.8;
 }
