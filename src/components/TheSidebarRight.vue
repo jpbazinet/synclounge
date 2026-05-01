@@ -187,6 +187,7 @@ export default {
   font-size: 0.8em;
   color: rgb(255 255 255 / 70%);
 }
+
 .message-input-area {
   flex: 0 0 auto;
 }
