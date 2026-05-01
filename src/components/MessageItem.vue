@@ -1,6 +1,6 @@
 <template>
   <v-list-item class="message-item">
-    <v-list-item-avatar size="40">
+    <v-list-item-avatar size="32">
       <v-img :src="sender.thumb" />
     </v-list-item-avatar>
     <v-list-item-content>
