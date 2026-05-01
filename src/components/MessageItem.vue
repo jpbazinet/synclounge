@@ -58,20 +58,25 @@ export default {
 </script>
 
 <style scoped>
+/* stylelint-disable selector-pseudo-class-no-unknown, selector-class-pattern */
 .message-item {
   align-items: flex-start !important;
   padding: 10px 12px !important;
 }
+
 .message-item + .message-item {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgb(255 255 255 / 5%);
 }
+
 .message-item :deep(.v-list-item__avatar) {
   margin-top: 2px;
   margin-right: 10px;
 }
+
 .message-item :deep(.v-avatar) {
-  box-shadow: 0 0 0 2px rgba(229, 160, 13, 0.5) !important;
+  box-shadow: 0 0 0 2px rgb(229 160 13 / 50%) !important;
 }
+
 .message-item :deep(.v-list-item__title) {
   color: #f0a020 !important;
   font-weight: 600 !important;
@@ -79,20 +84,24 @@ export default {
   letter-spacing: 0.01em !important;
   margin-bottom: 3px !important;
 }
+
 .message-content {
   white-space: normal !important;
   font-weight: normal !important;
   word-break: break-word;
   overflow-wrap: anywhere;
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: rgb(255 255 255 / 85%) !important;
   line-height: 1.5 !important;
 }
+
 .message-content :deep(.chat-link) {
   color: inherit;
   text-decoration: underline;
   word-break: break-all;
 }
+
 .message-content :deep(.chat-link:hover) {
   opacity: 0.8;
 }
+/* stylelint-enable selector-pseudo-class-no-unknown, selector-class-pattern */
 </style>
