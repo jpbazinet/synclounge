@@ -226,7 +226,7 @@ export default {
     },
     handlePaste(event) {
       const items = Array.from(event.clipboardData && event.clipboardData.items || []);
-      const imageItem = items.find((item) => item.type.startsWith('image/');
+      const imageItem = items.find((item) => item.type.startsWith('image/'));
       if (!imageItem) return;
       event.preventDefault();
       const file = imageItem.getAsFile();
