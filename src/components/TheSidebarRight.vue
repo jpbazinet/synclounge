@@ -5,7 +5,7 @@
     app
     right
     class="pa-0"
-    width="300"
+    width="340"
     @input="SET_RIGHT_SIDEBAR_OPEN"
   >
     <template #prepend>
