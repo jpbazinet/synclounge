@@ -75,7 +75,7 @@ export default {
   align-self: flex-start;
   margin-top: 10px;
   margin-right: 12px;
-  margin-left: 2px;
+  margin-left: 6px;
 }
 
 .message-item :deep(.v-avatar) {
