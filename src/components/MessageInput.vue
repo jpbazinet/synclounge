@@ -245,7 +245,7 @@ export default {
       reader.onload = (ev) => {
         const img = new Image();
         img.onload = () => {
-          const MAX = 800;
+          const MAX = 400;
           let { width, height } = img;
           if (width > MAX || height > MAX) {
             if (width > height) {
