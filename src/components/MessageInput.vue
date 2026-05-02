@@ -257,13 +257,13 @@ export default {
   align-items: center;
   width: 100%;
   border-top: 1px solid rgb(255 255 255 / 8%);
-  padding: 0;
+  padding: 4px;
 }
 
 .emoji-btn {
   flex-shrink: 0;
   align-self: center;
-  margin-top: 15px;
+  margin-top: 4px;
 }
 
 .emoji-trigger,
@@ -304,4 +304,11 @@ export default {
   align-self: center;
   color: rgb(255 255 255 / 70%) !important;
 }
+
+/* stylelint-disable selector-pseudo-class-no-unknown */
+.message-input-wrapper :deep(.v-text-field) {
+  padding-top: 0;
+  margin-top: 0;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown */
 </style>
