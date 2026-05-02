@@ -72,3 +72,32 @@ main {
 .v-navigation-drawer--right {
   background-color: #1a1a24 !important;
 }
+
+/* App bar - dark glass, amber bottom border */
+.v-app-bar {
+  background-color: rgb(10 8 20 / 97%) !important;
+}
+
+.v-app-bar .v-toolbar__content {
+  border-bottom: 1px solid rgb(229 160 13 / 30%);
+}
+
+/* Left sidebar - match right sidebar */
+.v-navigation-drawer:not(.v-navigation-drawer--right) {
+  background-color: #1a1a24 !important;
+}
+
+/* Button hover - subtle lift */
+.v-btn:not(.v-btn--round).v-size--default {
+  transition: opacity 0.15s, transform 0.15s !important;
+}
+
+.v-btn:not(.v-btn--round).v-size--default:hover {
+  opacity: 0.85 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Scrollbar - muted instead of amber */
+::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 18%);
+}
