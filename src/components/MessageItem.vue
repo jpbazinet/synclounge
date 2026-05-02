@@ -70,8 +70,9 @@ export default {
 
 .message-item :deep(.v-list-item__avatar) {
   align-self: flex-start;
-  margin-top: 2px;
-  margin-right: 10px;
+  margin-top: 10px;
+  margin-right: 12px;
+  margin-left: 2px;
 }
 
 .message-item :deep(.v-avatar) {
