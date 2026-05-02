@@ -61,7 +61,10 @@ export default {
   }) => {
     switch (type) {
       case 'episode': {
-        return `${grandparentTitle} - ${title} S${parentIndex}-E${index}`;
+        const s = parentIndex != null ? String(parentIndex).padStart(2, '0') : null;
+        const e = index != null ? String(index).padStart(2, '0') : null;
+        const ep = s && e ? ` S${s}E${e}` : '';
+        return `${grandparentTitle} - ${title}${ep}`;
       }
 
       default: {
