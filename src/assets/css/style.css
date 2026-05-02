@@ -101,3 +101,8 @@ main {
 ::-webkit-scrollbar-thumb {
   background: rgb(255 255 255 / 18%);
 }
+
+/* Override Vuetify avatar first-child margin-right */
+.v-application--is-ltr .v-list-item__avatar:first-child {
+  margin-right: 12px !important;
+}
