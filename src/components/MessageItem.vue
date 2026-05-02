@@ -48,10 +48,13 @@ export default {
         return `<img src="${src}" style="${imgStyle}" />`;
       }
       const safe = escapeHtml(this.message.text);
-      return safe.replace(URL_PATTERN, (url) => {
+      const emojiOnly = /^[\p{Emoji_Presentation}\p{Extended_Pictographic}\s]+$/u.test(safe.trim());
+      const processed = safe.replace(URL_PATTERN, (url) => {
         const attrs = `href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link"`;
         return `<a ${attrs}>${url}</a>`;
       });
+      if (emojiOnly) return '<span style="font-size:25px;line-height:1.2">' + processed + '</span>';
+      return processed;
     },
   },
 };
