@@ -53,7 +53,7 @@ export default {
         const attrs = `href="${url}" target="_blank" rel="noopener noreferrer" class="chat-link"`;
         return `<a ${attrs}>${url}</a>`;
       });
-      if (emojiOnly) return '<span style="font-size:25px;line-height:1.2">' + processed + '</span>';
+      if (emojiOnly) return `<span style="font-size:25px;line-height:1.2">${processed}</span>`;
       return processed;
     },
   },
