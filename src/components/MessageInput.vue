@@ -52,6 +52,9 @@
       label="Message"
       hide-details
       single-line
+      outlined
+      dense
+      rounded
       class="ml-1"
       @keyup.enter.native="sendMessage"
       @keyup.space.native="convertEmoticons"
